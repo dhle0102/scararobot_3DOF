@@ -67,45 +67,9 @@ void setup() {
   multi.addStepper(StepperX);
   multi.addStepper(StepperY);
 
-  // setup Serial 
-  Serial.println("Set home for Scara robot 3DOF: ");
-
-   // set up home state X
-  Serial.print("start home X");
-  while (digitalRead(end_x))
-  {
-    StepperX.setSpeed(c_speed);
-    StepperX.runSpeed();
-    delay(microStep);
-  };
-  Serial.print("=>");
-  Serial.println("end home X");
-  delay(1000);
-  
-  // set up home state y 
-  Serial.print("start home Y");
-  while (digitalRead(end_y))
-  {
-    StepperY.setSpeed(c_speed);
-    StepperY.runSpeed();
-    delay(microStep);
-  }
-  Serial.print("=>");
-  Serial.println("end home Y");
-  delay(1000);
-
-  // set up home state Z
-  Serial.print("start home Z");
-  while (digitalRead(end_z))
-  {
-    StepperZ.setSpeed(c_speed);
-    StepperZ.runSpeed();
-    delay(microStep);
-  }
-  Serial.print("=>");
-  Serial.println("end home Z");
-  delay(1000);
-
+  // setup home 
+  setupHome();
+ 
   StepperZ.moveTo(position_Z[0]);
   StepperZ.runToPosition();
 
@@ -211,4 +175,48 @@ void runCase(uint8_t value)
   Serial.println();
 
   Serial.println("Nhap vi tri o di den :");
+}
+
+
+// set home for scara
+void setupHome(){
+   // setup Serial 
+  Serial.println("Set home for Scara robot 3DOF: ");
+
+   // set up home state X
+  Serial.print("start home X");
+  while (digitalRead(end_x))
+  {
+    StepperX.setSpeed(c_speed);
+    StepperX.runSpeed();
+    delay(microStep);
+  };
+  Serial.print("=>");
+  Serial.println("end home X");
+  delay(1000);
+  
+  // set up home state y 
+  Serial.print("start home Y");
+  while (digitalRead(end_y))
+  {
+    StepperY.setSpeed(c_speed);
+    StepperY.runSpeed();
+    delay(microStep);
+  }
+  Serial.print("=>");
+  Serial.println("end home Y");
+  delay(1000);
+
+  // set up home state Z
+  Serial.print("start home Z");
+  while (digitalRead(end_z))
+  {
+    StepperZ.setSpeed(c_speed);
+    StepperZ.runSpeed();
+    delay(microStep);
+  }
+  Serial.print("=>");
+  Serial.println("end home Z");
+  delay(1000);
+
 }
